@@ -1,17 +1,32 @@
-﻿using UnityEngine;
+﻿using Stage;
+using UnityEngine;
 
 namespace Data
 {
     [CreateAssetMenu(fileName = "Stage", menuName = "Data/Stage", order = 0)]
-    public class StageData : ScriptableObject
+    public class StageData : ScriptableObject, IMoon
     {
-
-        public GameObject PlatformParticles;
         public AudioClip MainMelody;
-        [Header("Moon")]
-        public GameObject LandScape;
-        public Material MoonBackground;
+        
+        [Space, Header("Platform")]
+        public GameObject PlatformParticles;
+        [SerializeField] private float _platformSize;
+        [SerializeField] private float _platformPlaceMinX;
+        [SerializeField] private float _platformPlaceMaxX;
+
+        [Space, Header("Moon")] 
+        [SerializeField] private GameObject _landScape;
+        [SerializeField] private Material _moonBackground;
         [SerializeField] private float _moonGravity;
-        public float MoonGravity =>  _moonGravity;
+
+        public GameObject LandScape => _landScape;
+        public Material MoonBackground => _moonBackground;
+        public float MoonGravity => _moonGravity;
+
+        public float PlatformSize => _platformSize;
+
+        public float PlatformPlaceMinX => _platformPlaceMinX;
+
+        public float PlatformPlaceMaxX => _platformPlaceMaxX;
     }
 }

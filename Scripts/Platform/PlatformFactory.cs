@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Factories
+namespace Platform
 {
     public class PlatformFactory : IPlatformFactory
     {
@@ -24,5 +24,6 @@ namespace Factories
 
             return platform.transform;
         }
+
     }
 }

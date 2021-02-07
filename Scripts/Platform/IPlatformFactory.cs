@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Factories
+namespace Platform
 {
     internal interface IPlatformFactory
     {

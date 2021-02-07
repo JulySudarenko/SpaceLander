@@ -1,4 +1,4 @@
-﻿namespace SpaceLander
+﻿namespace Assistants
 {
     public static class NameManager
     {

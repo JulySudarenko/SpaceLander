@@ -2,6 +2,6 @@
 {
     public interface IFixedExecute : IController
     {
-        void FixedExecute(float deltatime);
+        void FixedExecute(float deltaTime);
     }
 }

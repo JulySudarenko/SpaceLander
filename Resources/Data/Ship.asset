@@ -14,3 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipPrefab: {fileID: 3912580946091142188, guid: 9b8ad953362b0754bbc8c4f9d3b94453,
     type: 3}
+  ConstForce: {fileID: 0}
+  _forceRate: 6
+  torqueRate: 30
+  Thruster: {fileID: 0}
+  ThrusterSound: {fileID: 8300000, guid: 1ff95ffe051d11e4fa785b4cd35cd74c, type: 3}
+  CrashSmoke: {fileID: 5399989292782991379, guid: f94d820a8f41154479047f349e4e2896,
+    type: 3}
+  CrashSound: {fileID: 8300000, guid: a3972f09ea3e34a47ba3998100388978, type: 3}
+  _initialFuelSupply: 100
+  _fuelRate: -10
+  LandSuccessSound: {fileID: 8300000, guid: a3972f09ea3e34a47ba3998100388978, type: 3}
+  _validTimeOnPlatform: 2

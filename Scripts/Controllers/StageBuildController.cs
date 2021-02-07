@@ -1,5 +1,6 @@
 ﻿using Data;
-using Factories;
+using Platform;
+using Stage;
 using UnityEngine;
 
 namespace SpaceLander
@@ -7,37 +8,23 @@ namespace SpaceLander
     internal class StageBuildController : IInitialize
     {
         private MoonSurface _moon;
-        private PlatformFactory _platformFactory;
-        private StageData _data;
-        private GameObject _ground;
-        private float _platformSize = 2.0f;
+        private PlatformInitialize _platformInitialize;
+        private AudioMainThemePlayer _audioMainThemePlayer;
+        private Transform _platform;
+ 
 
         public StageBuildController(StageData data)
         {
             _moon = new MoonSurface(data);
-            _platformFactory = new PlatformFactory(data.PlatformParticles);
-            _data = data;
+            _platformInitialize = new PlatformInitialize(new PlatformFactory(data.PlatformParticles));
+            _audioMainThemePlayer = new AudioMainThemePlayer(data.MainMelody);
         }
 
         public void Initialize()
         {
             _moon.CreateSurface();
-            CreateGround();
-            _platformFactory.CreatePlatform(new Vector3(10f, 3f, 0f), 2f);
-        }
-
-        public GameObject CreateGround()
-        {
-            var ground = Object.Instantiate(_data.LandScape);
-            return ground;
-        }
-
-        public Vector3 PlatformPlaceGenerator()
-        {
-            float positionY = _ground.transform.localScale.y / 2;
-            float positionX = Random.Range(0, 70);
-            var place = new Vector3(positionX, positionY, 0.0f);
-            return place;
+            _platform = _platformInitialize.CreatePlatform(_moon.HeightOfThePlatformLocation);
+            _audioMainThemePlayer.PlayMainThemeClip();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Data;
 using UnityEngine;
 
-namespace SpaceLander
+namespace CameraController
 {
     internal class CameraMagnifier
     {

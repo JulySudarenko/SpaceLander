@@ -5,7 +5,7 @@ namespace SpaceLander
     internal sealed class Controllers : IInitialize, IFixedExecute, IExecute, ICleanup
     {
         private readonly List<IInitialize> _initializeControllers;
-        private readonly List<IFixedExecute> _fixedControllers;
+        private readonly List<IFixedExecute> _fixedControllers; 
         private readonly List<IExecute> _executeControllers;
         private readonly List<ICleanup> _cleanupControllers;
 

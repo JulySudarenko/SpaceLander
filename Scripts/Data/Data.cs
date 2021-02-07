@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using static SpaceLander.Extentions;
+using static Assistants.Extentions;
 
 namespace Data
 {

@@ -1,25 +1,34 @@
-﻿using Data;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace SpaceLander
+namespace Stage
 {
     internal class MoonSurface
     {
-        private Material _sky;
-        private GameObject _land;
-        private float _gravity;
+        private IMoon _data;
 
-        public MoonSurface(StageData data)
+        public MoonSurface(IMoon data)
         {
-            _sky = data.MoonBackground;
-            _gravity = data.MoonGravity;
-            _land = data.LandScape;
+            _data = data;
         }
+
+        public float HeightOfThePlatformLocation => _data.LandScape.transform.localScale.y / 2;
 
         public void CreateSurface()
         {
-            RenderSettings.skybox = _sky;
-            Physics.gravity = new Vector3(0, _gravity, 0);
+               CreatePlanet();
+               CreateGround();
+        }
+
+
+        private void CreatePlanet()
+        {
+            RenderSettings.skybox = _data.MoonBackground;
+            Physics.gravity = new Vector3(0.0f, _data.MoonGravity, 0.0f);
+        }
+        
+        private void CreateGround()
+        {
+            var ground = Object.Instantiate(_data.LandScape);
         }
     }
 }

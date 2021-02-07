@@ -6,17 +6,35 @@ namespace Data
     public class ShipData : ScriptableObject
     {
         public GameObject ShipPrefab;
-        public ParticleSystem Thruster;
-        public ParticleSystem CrashSmoke;
-        public AudioClip ThrusterSound;
-        public AudioClip CrashSound;
-        public AudioClip LandSuccessSound;
+        public ConstantForce ConstForce;
+ 
+        [Space, Header("Force")] 
+        [SerializeField] private float _forceRate;
+        [SerializeField] private float torqueRate;
 
+        [Space, Header("Thruster")] 
+        public ParticleSystem Thruster;
+        public AudioClip ThrusterSound;
+
+        [Space, Header("Crash")] public ParticleSystem CrashSmoke;
+        public AudioClip CrashSound;
+
+        [Space, Header("Fuel")] 
         [SerializeField] private float _initialFuelSupply;
         [SerializeField] private float _fuelRate;
 
-        public float InitialFuelSupply1 => _initialFuelSupply;
+        [Space, Header("Win")]
+        public AudioClip LandSuccessSound;
+
+        [SerializeField] private float _validTimeOnPlatform;
+
+        public float InitialFuelSupply => _initialFuelSupply;
 
         public float FuelRate => _fuelRate;
+
+        public float ForceRate => _forceRate;
+        public float TorqueRate => torqueRate;
+
+        public float ValidTimeOnPlatform => _validTimeOnPlatform;
     }
 }

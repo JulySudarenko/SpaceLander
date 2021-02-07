@@ -1,4 +1,4 @@
-﻿namespace SpaceLander
+﻿namespace CameraController
 {
     internal class CameraFocusLock
     {

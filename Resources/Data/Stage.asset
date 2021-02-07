@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6807197141a9214a8f954ce0c601a81, type: 3}
   m_Name: Stage
   m_EditorClassIdentifier: 
+  MainMelody: {fileID: 8300000, guid: 1b8e5292d499ec748bf426f7a6d5a516, type: 3}
   PlatformParticles: {fileID: 9058033924298195995, guid: d8f00a8eb0f5b6a4b826a0d4408642bb,
     type: 3}
-  MainMelody: {fileID: 8300000, guid: 1b8e5292d499ec748bf426f7a6d5a516, type: 3}
-  LandScape: {fileID: 142879537029347094, guid: 63205a74aae3eae4baebebf4e34b622f,
+  _platformSize: 2
+  _platformPlaceMinX: 5
+  _platformPlaceMaxX: 65
+  _landScape: {fileID: 142879537029347094, guid: 63205a74aae3eae4baebebf4e34b622f,
     type: 3}
-  MoonBackground: {fileID: 2100000, guid: 61b27eeb4403a794bb02c54b1829402f, type: 2}
+  _moonBackground: {fileID: 2100000, guid: 61b27eeb4403a794bb02c54b1829402f, type: 2}
   _moonGravity: -1.628

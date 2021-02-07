@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using SpaceLander;
+using UnityEngine;
 
-
-namespace SpaceLander
+namespace Assistants
 {
     public static class BuildAssistant
     {

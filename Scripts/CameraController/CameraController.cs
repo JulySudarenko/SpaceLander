@@ -1,7 +1,8 @@
 ﻿using Data;
+using SpaceLander;
 using UnityEngine;
 
-namespace SpaceLander
+namespace CameraController
 {
     internal class CameraController : IInitialize, IExecute
     {
@@ -9,7 +10,7 @@ namespace SpaceLander
         private Camera _camera;
         private CameraMagnifier _cameraMagnifier;
         private CameraFocusLock _focusLock;
- 
+
         public CameraController(Transform ship, CameraData data)
         {
             _camera = Camera.main;
@@ -18,10 +19,9 @@ namespace SpaceLander
             _cameraMagnifier = new CameraMagnifier(data, _camera);
         }
 
-
         public void Initialize()
         {
-             _cameraMagnifier.GetCameraStartSettings();
+            _cameraMagnifier.GetCameraStartSettings();
         }
 
         public void Execute(float deltaTime)
