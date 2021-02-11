@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDefaultPosition: {fileID: 9052385998379929097, guid: 3e39d740fb0d1b3428faeb20cc056da1,
     type: 3}
+  _cameraDefaultSize: 21
+  _cameraMoveSpeed: 10
+  _cameraZoomSpeed: 6
+  _cameraZoomLimit: 5

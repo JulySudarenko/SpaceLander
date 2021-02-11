@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Stage
+namespace SpaceLander
 {
     internal interface IMoon
     {

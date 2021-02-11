@@ -1,67 +1,63 @@
-﻿using Data;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CameraController
+namespace SpaceLander
 {
     internal class CameraMagnifier
     {
         private Camera _camera;
-        private Vector3 _defaultPosition;
-        private float _defaultSize;
-        private float _moveSpeed;
-        private float _zoomSpeed;
-        private float _zoomLimit;
+        private ICameraModel _model;
+        private Transform _ship;
         
-        public CameraMagnifier(CameraData data, Camera camera)
+        public CameraMagnifier(ICameraModel model, Camera camera, Transform ship)
         {
+            _model = model;
             _camera = camera;
-            _moveSpeed = data.CameraMoveSpeed;
-            _zoomSpeed = data.CameraZoomSpeed;
-            _zoomLimit = data.CameraZoomLimit;
+            _ship = ship;
         }
-
+        
         public void GetCameraStartSettings()
         {
-            _defaultPosition = _camera.transform.position;
-            _defaultSize = _camera.orthographicSize;
+            _model.CameraDefaultPosition.position = _camera.transform.position;
+            _model.CameraDefaultSize = _camera.orthographicSize;
         }
         
-        public void ExecuteFocus(float deltaTime, Transform ship)
+        public void ExecuteFocus(float deltaTime)
         {
+            Debug.Log("Camera change focus");
             float size = _camera.orthographicSize;
-            float sizeDiff = size - _zoomLimit;
-
-            Vector3 landerOffset = ship.transform.position - _camera.transform.position;
+            float sizeDiff = size - _model.CameraZoomLimit;
+            
+            Vector3 landerOffset = _ship.transform.position - _camera.transform.position;
             landerOffset.Set(landerOffset.x, landerOffset.y, 0f);
-
-            float time = sizeDiff / _zoomSpeed;
+            
+            float time = sizeDiff / _model.CameraZoomSpeed;
             if (time > 0)
             {
-                _moveSpeed = landerOffset.magnitude / time;
+                _model.CameraMoveSpeed = landerOffset.magnitude / time;
             }
-
-
-            if (size > _zoomLimit)
+            
+            
+            if (size > _model.CameraZoomLimit)
             {
-                _camera.orthographicSize -= _zoomSpeed * deltaTime;
+                _camera.orthographicSize -= _model.CameraZoomSpeed * deltaTime;
             }
-
-
-            if (landerOffset.magnitude < _moveSpeed * deltaTime)
+            
+            
+            if (landerOffset.magnitude < _model.CameraMoveSpeed * deltaTime)
             {
                 _camera.transform.position += landerOffset;
             }
             else
             {
                 landerOffset.Normalize();
-                _camera.transform.position += landerOffset * _moveSpeed * deltaTime;
+                _camera.transform.position += landerOffset * _model.CameraMoveSpeed * deltaTime;
             }
         }
 
         public void ResetFocus()
         {
-            _camera.transform.position = _defaultPosition;
-            _camera.orthographicSize = _defaultSize;
+            _camera.transform.position = _model.CameraDefaultPosition.position;
+            _camera.orthographicSize = _model.CameraDefaultSize;
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage
   m_EditorClassIdentifier: 
   MainMelody: {fileID: 8300000, guid: 1b8e5292d499ec748bf426f7a6d5a516, type: 3}
-  PlatformParticles: {fileID: 9058033924298195995, guid: d8f00a8eb0f5b6a4b826a0d4408642bb,
+  PlatformParticles: {fileID: 7215035921633034487, guid: dbd1696601f2a9642a006f06ab6bc709,
     type: 3}
   _platformSize: 2
   _platformPlaceMinX: 5

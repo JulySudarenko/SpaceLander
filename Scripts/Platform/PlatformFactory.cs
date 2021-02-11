@@ -1,29 +1,26 @@
-﻿using UnityEngine;
+﻿using Assistants;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Platform
+namespace SpaceLander
 {
     public class PlatformFactory : IPlatformFactory
     {
-        private GameObject _prefab;
-        private Vector3 _scale;
-  
-        public PlatformFactory(GameObject platform)
+        private Transform _prefab;
+        private float _size;
+
+        public PlatformFactory(Transform platform, float size)
         {
             _prefab = platform;
         }
 
-        public Transform CreatePlatform(Vector3 position, float size)
+        public Transform CreatePlatform()
         {
-            var platform = Object.Instantiate(_prefab, position, Quaternion.identity);
-
-            _scale = _prefab.transform.localScale;
-            platform.transform.localScale = new Vector3(size, _scale.y, _scale.z);
-
-            var platformShape = platform.GetComponentInChildren<ParticleSystem>().shape;
-            platformShape.radius = size;
-
+            var platform = Object.Instantiate(_prefab);
+            var shapeModule = platform.GetComponentInChildren<ParticleSystem>().shape;
+            shapeModule.radius = 2f;
+            platform.name = NameManager.NAME_PLATFORM;
             return platform.transform;
         }
-
     }
 }

@@ -1,6 +1,6 @@
-﻿using SpaceLander;
+﻿using UserInput;
 
-namespace UserInput
+namespace SpaceLander
 {
     internal class InputController : IFixedExecute
     {

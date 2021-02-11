@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SpaceLander.Model
+namespace SpaceLander
 {
     public interface IFuelViewModel
 

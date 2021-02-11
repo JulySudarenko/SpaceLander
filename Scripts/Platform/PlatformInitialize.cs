@@ -1,31 +1,35 @@
 ﻿using UnityEngine;
 
-namespace Platform
+namespace SpaceLander
 {
     internal class PlatformInitialize
     {
         private IPlatformFactory _factory;
+        private PlatformView _platformView;
+        private ParticleSystem _particle;
+        private IPlatformViewModel _platformViewModel;
 
-        //TODO Move to StageData
-        private const float PLATFORM_SIZE = 2.0f;
-        private const float MIN_X = 0.0f;
-        private const float MAX_X = 70.0f;
-
-        public PlatformInitialize(IPlatformFactory factory)
+        public PlatformInitialize(IPlatformFactory factory, StageData data, float landPosition)
         {
             _factory = factory;
+            var platform = _factory.CreatePlatform();
+            _particle = platform.GetComponentInChildren<ParticleSystem>();
+            var model = new PlatformModel(data, platform.localScale, landPosition);
+            _platformView = platform.GetComponent<PlatformView>();
+            _platformViewModel = new PlatformViewModel(model);
         }
 
-        public Transform CreatePlatform(float landPosition)
+        public void Initialize()
         {
-            return _factory.CreatePlatform(PlatformPlaceGenerator(landPosition), PLATFORM_SIZE);
+            // var particleShape = _particle.shape;
+            // particleShape.radius = 2f;
+            _platformView.InitializeView(_platformViewModel, _particle);
+            _platformViewModel.RebootPlatform();
         }
         
-        private Vector3 PlatformPlaceGenerator(float landPosition)
+        public void RebootPlatform()
         {
-            var positionX = Random.Range(MIN_X, MAX_X);
-            var place = new Vector3(positionX, landPosition, 0.0f);
-            return place;
+            _platformViewModel.RebootPlatform();
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Platform
+namespace SpaceLander
 {
     internal interface IPlatformFactory
     {
-        Transform CreatePlatform(Vector3 position, float size);
+        Transform CreatePlatform();
     }
 }

@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f841ea4525e7da94b833281af778e89d, type: 3}
   m_Name: Ship
   m_EditorClassIdentifier: 
-  ShipPrefab: {fileID: 3912580946091142188, guid: 9b8ad953362b0754bbc8c4f9d3b94453,
+  ShipPrefab: {fileID: 2685924941387925885, guid: 25a735a0c127e6341aa7c98b83ed9060,
     type: 3}
-  ConstForce: {fileID: 0}
   _forceRate: 6
-  torqueRate: 30
-  Thruster: {fileID: 0}
+  torqueRate: 20
   ThrusterSound: {fileID: 8300000, guid: 1ff95ffe051d11e4fa785b4cd35cd74c, type: 3}
-  CrashSmoke: {fileID: 5399989292782991379, guid: f94d820a8f41154479047f349e4e2896,
-    type: 3}
-  CrashSound: {fileID: 8300000, guid: a3972f09ea3e34a47ba3998100388978, type: 3}
+  LandSuccessSound: {fileID: 8300000, guid: a3972f09ea3e34a47ba3998100388978, type: 3}
+  CrashSound: {fileID: 8300000, guid: 86a14e7b088822f4292f1876b7d34972, type: 3}
   _initialFuelSupply: 100
   _fuelRate: -10
-  LandSuccessSound: {fileID: 8300000, guid: a3972f09ea3e34a47ba3998100388978, type: 3}
-  _validTimeOnPlatform: 2
+  _torqueFuelRate: 10
+  _winTimeOnPlatform: 2
+  _randomForceMINX: -0.1
+  _randomForceMAXX: 0.1
+  _randomForceMINY: 0.1
+  _randomForceMAXY: 0.1
+  _randomTorqueForceMIN: -0.1
+  _randomTorqueForceMAX: 0.1

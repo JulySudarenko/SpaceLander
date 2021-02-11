@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 
-namespace Data
+namespace SpaceLander
 {
     [CreateAssetMenu(fileName = "Camera", menuName = "Data/Camera", order = 0)]
     public class CameraData : ScriptableObject
     {
         public Transform CameraDefaultPosition;
 
-        public float CameraDefaultSize { get; }
-        public float CameraMoveSpeed { get; }
-        public float CameraZoomSpeed { get; }
-        public float CameraZoomLimit { get; }
+        [SerializeField] private float _cameraDefaultSize;
+        [SerializeField] private float _cameraMoveSpeed;
+        [SerializeField] private float _cameraZoomSpeed;
+        [SerializeField] private float _cameraZoomLimit;
+
+        public float CameraMoveSpeed => _cameraMoveSpeed;
+
+        public float CameraZoomLimit => _cameraZoomLimit;
+
+        public float CameraZoomSpeed => _cameraZoomSpeed;
+
+        public float CameraDefaultSize => _cameraDefaultSize;
     }
 }

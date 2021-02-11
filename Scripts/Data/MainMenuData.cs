@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Data
+namespace SpaceLander
 {
     [CreateAssetMenu(fileName = "MainMenu", menuName = "Data/MainMenu", order = 0)]
     public class MainMenuData : ScriptableObject

@@ -1,7 +1,6 @@
-﻿using Stage;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Data
+namespace SpaceLander
 {
     [CreateAssetMenu(fileName = "Stage", menuName = "Data/Stage", order = 0)]
     public class StageData : ScriptableObject, IMoon
@@ -9,7 +8,7 @@ namespace Data
         public AudioClip MainMelody;
         
         [Space, Header("Platform")]
-        public GameObject PlatformParticles;
+        public Transform PlatformParticles;
         [SerializeField] private float _platformSize;
         [SerializeField] private float _platformPlaceMinX;
         [SerializeField] private float _platformPlaceMaxX;

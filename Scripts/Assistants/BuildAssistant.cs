@@ -19,7 +19,7 @@ namespace Assistants
 
         public static GameObject AddHitSystem(this GameObject gameObject)
         {
-            gameObject.GetOrAddComponent<Hit>();
+            gameObject.GetOrAddComponent<HitLandingComponentSystem>();
             return gameObject;
         }
 

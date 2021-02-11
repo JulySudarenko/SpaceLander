@@ -1,7 +1,7 @@
 ﻿using System;
-using SpaceLander.Model;
+using UnityEngine;
 
-namespace ViewModel
+namespace SpaceLander
 {
     public sealed class FuelViewModel : IFuelViewModel
     {
@@ -25,7 +25,7 @@ namespace ViewModel
 
         public void ConsumeFuelOnTorque(float deltaTime)
         {
-            FuelModel.CurrentFuel += (FuelModel.FuelRate / 10f) * deltaTime;
+            FuelModel.CurrentFuel += FuelModel.FuelRate / FuelModel.TorqueFuelRate * deltaTime;
             CheckFuelValue();
         }
 
@@ -36,7 +36,7 @@ namespace ViewModel
                 _hasFuel = false;
                 FuelModel.CurrentFuel = 0f;
             }
-            OnFuelChange?.Invoke(FuelModel.CurrentFuel);
+            OnFuelChange?.Invoke(Mathf.Round(FuelModel.CurrentFuel));
         }
     }
 }

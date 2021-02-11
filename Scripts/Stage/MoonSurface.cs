@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assistants;
+using UnityEngine;
 
-namespace Stage
+namespace SpaceLander
 {
     internal class MoonSurface
     {
@@ -15,8 +16,8 @@ namespace Stage
 
         public void CreateSurface()
         {
-               CreatePlanet();
-               CreateGround();
+            CreatePlanet();
+            CreateGround();
         }
 
 
@@ -25,10 +26,11 @@ namespace Stage
             RenderSettings.skybox = _data.MoonBackground;
             Physics.gravity = new Vector3(0.0f, _data.MoonGravity, 0.0f);
         }
-        
+
         private void CreateGround()
         {
             var ground = Object.Instantiate(_data.LandScape);
+            ground.name = NameManager.NAME_STAGE;
         }
     }
 }

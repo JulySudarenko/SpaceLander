@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ship
+namespace SpaceLander
 {
     internal interface IShipFactory
     {

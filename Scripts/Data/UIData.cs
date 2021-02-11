@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static Assistants.Extentions;
 
-namespace Data
+namespace SpaceLander
 {
     [CreateAssetMenu(fileName = "UIData", menuName = "Data/UIData", order = 0)]
     public class UIData : ScriptableObject

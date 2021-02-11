@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assistants;
+using UnityEngine;
 
-namespace Ship
+namespace SpaceLander
 {
     internal class ShipFactory : IShipFactory
     {
@@ -14,6 +15,7 @@ namespace Ship
         public GameObject CreateShip()
         {
             var ship = Object.Instantiate(_prefab);
+            ship.GetOrAddComponent<HitShipSystem>();
             return ship;
         }
     }
