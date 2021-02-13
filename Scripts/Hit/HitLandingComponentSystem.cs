@@ -5,12 +5,11 @@ namespace SpaceLander
 {
     public class HitLandingComponentSystem : MonoBehaviour
     {
-        public Action<GameObject> OnHit;
+        public Action<GameObject, GameObject, float> OnHit;
 
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Ups");
-            OnHit?.Invoke(other.gameObject);
+            OnHit?.Invoke(gameObject, other.gameObject, other.relativeVelocity.magnitude);
         }
     }
 }

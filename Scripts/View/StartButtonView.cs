@@ -13,25 +13,20 @@ namespace SpaceLander
         {
             _crashViewModel = crash;
             _landingViewModel = win;
-            _crashViewModel.IsLose += ShowTitle;
-            _landingViewModel.IsWin += ShowTitle;
+            _crashViewModel.OnCrash += ShowButton;
+            _landingViewModel.IsWin += ShowButton;
             _startBtn.onClick.AddListener(gameManager.RebootGame);
         }
 
-        private void ShowTitle()
+        private void ShowButton()
         {
             _startBtn.gameObject.SetActive(true);
         }
 
-        private void HideTitle()
-        {
-            _startBtn.gameObject.SetActive(false);
-        }
-
         ~StartButtonView()
         {
-            _crashViewModel.IsLose -= ShowTitle;
-            _landingViewModel.IsWin -= ShowTitle;
+            _crashViewModel.OnCrash -= ShowButton;
+            _landingViewModel.IsWin -= ShowButton;
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceLander
 {
     internal class EndGameMessageView : MonoBehaviour
     {
         [SerializeField] private GameObject _messageBox;
+        [SerializeField] private Text _messageText;
         private ICrashAssessmentViewModel _crashViewModel;
         private ILandingAssessmentViewModel _landingViewModel;
 
@@ -12,24 +14,26 @@ namespace SpaceLander
         {
             _crashViewModel = crash;
             _landingViewModel = win;
-            _crashViewModel.IsLose += ShowTitle;
-            _landingViewModel.IsWin += ShowTitle;
+            _crashViewModel.OnCrash += ShowCrashTitle;
+            _landingViewModel.IsWin += ShowWinTitle;
         }
 
-        private void ShowTitle()
+        private void ShowWinTitle()
         {
             _messageBox.SetActive(true);
+            _messageText.text = _landingViewModel.WinMessage;
         }
 
-        private void HideTitle()
+        private void ShowCrashTitle()
         {
             _messageBox.SetActive(true);
+            _messageText.text = _crashViewModel.CrashMessage;
         }
 
         ~EndGameMessageView()
         {
-            _crashViewModel.IsLose -= ShowTitle;
-            _landingViewModel.IsWin -= ShowTitle;
+            _crashViewModel.OnCrash -= ShowCrashTitle;
+            _landingViewModel.IsWin -= ShowWinTitle;
         }
     }
 }

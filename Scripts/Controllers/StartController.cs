@@ -23,7 +23,7 @@ namespace SpaceLander
             var ship = new ShipInitialize(new ShipFactory(_data.ShipData.ShipPrefab));
             var shipModelFactory = new ShipDetailsModelFactory(_data.ShipData);
 
-            var hitListener =
+            IHitListener hitListener =
                 new HitListener(ship.ShipTransform, shipModelFactory.WinModel, shipModelFactory.CrashModel);
             var shipCrashComponent = new CrashingShipComponents(ship.ShipTransform, hitListener.CrashAssessment);
 
@@ -35,17 +35,20 @@ namespace SpaceLander
                 ship.ShipTransform, inputInitialize.GetMoveInput());
 
             var viewManager = new ViewManager(ship.ShipView, ship.CrashEffectView, moveViewModel,
-                _fuelView, _messageView, _startBtnView, _exitBtnView, _titleView, hitListener, fuelViewModel, new GameManager());
+                _fuelView, _messageView, _startBtnView, _exitBtnView, _titleView, hitListener, fuelViewModel,
+                new GameManager());
+
+            var shipAudioPlayer = new ShipAudioPlayer(ship.ShipAudioPlayer, hitListener, moveViewModel);
 
             _controllers = new Controllers();
             _controllers.Add(stage);
             _controllers.Add(camera);
-            _controllers.Add(new InputController(inputInitialize.GetMoveInput(), inputInitialize.GetPauseInput(),
-                inputInitialize.GetExitInput()));
+            _controllers.Add(new InputController(inputInitialize.GetMoveInput()));
             _controllers.Add(moveViewModel);
             _controllers.Add(hitListener);
             _controllers.Add(shipCrashComponent);
             _controllers.Add(viewManager);
+            _controllers.Add(shipAudioPlayer);
         }
 
         private void Start()

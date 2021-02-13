@@ -14,15 +14,15 @@ namespace SpaceLander
             _viewModel.OnCrash += OnCrash;
         }
 
-        private void OnCrash(Vector3 collisionForce, Vector3 torqueForce)
+        private void OnCrash()
         {
             for (int j = 0; j < _joint.Length; j++)
             {
                 Destroy(_joint[j]);
             }
 
-            _rigidbody.AddForce(collisionForce);
-            _rigidbody.AddTorque(torqueForce);
+            _rigidbody.AddForce(_viewModel.CollisionForce);
+            _rigidbody.AddTorque(_viewModel.TorqueForce);
         }
 
         ~CrashComponentEffectView()

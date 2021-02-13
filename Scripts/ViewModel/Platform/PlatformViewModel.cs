@@ -27,12 +27,5 @@ namespace SpaceLander
             var place = new Vector3(positionX, _platformModel.LandPosition, 0.0f);
             OnPlatformPositionReboot?.Invoke(place);
         }
-
-        private void ChangePlatformSize()
-        {
-            var scale = _platformModel.VectorScale;
-            var vectorScale = new Vector3(_platformModel.Size, scale.y, scale.z);
-            OnPlatformSizeReboot?.Invoke(vectorScale, _platformModel.Size);
-        }
     }
 }

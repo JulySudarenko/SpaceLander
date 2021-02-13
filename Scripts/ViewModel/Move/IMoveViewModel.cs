@@ -8,5 +8,6 @@ namespace SpaceLander
         event Action<Vector3> OnMovementChange;
         event Action<Vector3> OnRotateChange;
         event Action<Vector3> OnStopMove;
+        AudioClip ThrusterSound { get; }
     }
 }

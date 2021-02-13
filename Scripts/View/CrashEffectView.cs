@@ -14,16 +14,9 @@ namespace SpaceLander
 
         }
 
-        private void OnCrash(Vector3 collisionForce, Vector3 torqueForce)
+        private void OnCrash()
         {
             CrashSmoke.Play();
-            
-
-            // for (int i = 0; i < _rigidbody.Length; i++)
-            // {
-            //     _rigidbody[i].AddForce(collisionForce);
-            //     _rigidbody[i].AddTorque(torqueForce);
-            // }
         }
 
         ~CrashEffectView()

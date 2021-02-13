@@ -23,7 +23,7 @@
             StartButtonView startButtonView,
             ExitButtonView exitButtonView,
             TitleView titleView,
-            HitListener hitListener,
+            IHitListener hitListener,
             IFuelViewModel fuelViewModel,
             IGameManager gameManager)
         {

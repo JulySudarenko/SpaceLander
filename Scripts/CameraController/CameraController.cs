@@ -2,7 +2,7 @@
 
 namespace SpaceLander
 {
-    internal class CameraController : IInitialize, IExecute, IReboot, ICleanup
+    internal class CameraController : IInitialize, IExecute, ICleanup
     {
         private Camera _camera;
         private CameraMagnifier _cameraMagnifier;
@@ -23,7 +23,7 @@ namespace SpaceLander
         {
             _cameraMagnifier.GetCameraStartSettings();
             _win.IsWin += UnlockCameraMagnifier;
-            _crash.IsLose += UnlockCameraMagnifier;
+            _crash.OnCrash += UnlockCameraMagnifier;
         }
 
         public void Execute(float deltaTime)
@@ -34,12 +34,6 @@ namespace SpaceLander
             }
         }
 
-        public void RebootLevel()
-        {
-            _focusLock.IsUnlock = false;
-            _cameraMagnifier.ResetFocus();
-        }
-
         public void UnlockCameraMagnifier()
         {
             _focusLock.IsUnlock = true;
@@ -48,7 +42,7 @@ namespace SpaceLander
         public void Cleanup()
         {
             _win.IsWin -= UnlockCameraMagnifier;
-            _crash.IsLose -= UnlockCameraMagnifier;
+            _crash.OnCrash -= UnlockCameraMagnifier;
         }
     }
 }

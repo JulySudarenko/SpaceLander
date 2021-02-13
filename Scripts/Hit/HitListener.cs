@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpaceLander
 {
-    internal class HitListener : IInitialize, ICleanup, IReboot, IHitListener
+    internal class HitListener :  IHitListener
     {
         private List<HitLandingComponentSystem> _landingComponents;
         public ILandingAssessmentViewModel LandingAssessment { get; }
@@ -39,24 +39,21 @@ namespace SpaceLander
             }
         }
 
-        private void HitSignalProcessing(HitState state, GameObject gameObject)
+        private void HitSignalProcessing(HitState state, GameObject collisionObject)
         {
-            if (gameObject.name == NameManager.NAME_PLATFORM)
+            if (collisionObject.name == NameManager.NAME_PLATFORM)
             {
                 switch (state)
                 {
                     case HitState.Enter:
                         _isOnPlatform = true;
-                        Debug.Log(state);
                         break;
                     case HitState.Exit:
                         LandingAssessment.ResetPlatformTime();
                         _isOnPlatform = false;
-                        Debug.Log(state);
                         break;
                     case HitState.Stay:
                         LandingAssessment.CheckWinningConditions(_hitShipSystem.transform);
-                        Debug.Log(state);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(state), state,
@@ -65,21 +62,18 @@ namespace SpaceLander
             }
             else
             {
-                if (!_isOnPlatform && gameObject.name == NameManager.NAME_STAGE)
+                if (!_isOnPlatform && collisionObject.name == NameManager.NAME_STAGE)
                 {
-                    
-                    Debug.Log("Crash");
                     CrashAssessment.Crash();
                 }
             }
         }
 
-        private void LandingComponentsHitProcessing(GameObject gameObject)
+        private void LandingComponentsHitProcessing(GameObject gameObject, GameObject collisionObject, float speed)
         {
-            if (!_isOnPlatform && gameObject.name == NameManager.NAME_STAGE)
+            if (collisionObject.name == NameManager.NAME_STAGE)
             {
-                Debug.Log("Oh!");
-                CrashAssessment.Crash();
+                CrashAssessment.AnalysisOfDamage(gameObject, speed);
             }
         }
 
@@ -90,12 +84,6 @@ namespace SpaceLander
             {
                 component.OnHit -= LandingComponentsHitProcessing;
             }
-        }
-
-        public void RebootLevel()
-        {
-            _isOnPlatform = false;
-            LandingAssessment.ResetPlatformTime();
         }
     }
 }

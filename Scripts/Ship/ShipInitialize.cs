@@ -9,8 +9,8 @@ namespace SpaceLander
         public Transform ShipTransform { get; }
         public ShipView ShipView { get; }
         public HitShipSystem HitShipSystem { get; }
-
         public CrashEffectView CrashEffectView { get; }
+        public AudioSource ShipAudioPlayer { get; }
 
         public ShipInitialize(IShipFactory shipFactory)
         {
@@ -19,6 +19,7 @@ namespace SpaceLander
             ShipView = Ship.GetOrAddComponent<ShipView>();
             HitShipSystem = Ship.GetOrAddComponent<HitShipSystem>();
             CrashEffectView = Ship.GetOrAddComponent<CrashEffectView>();
+            ShipAudioPlayer = Ship.GetOrAddComponent<AudioSource>();
         }
     }
 }

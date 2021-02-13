@@ -13,7 +13,7 @@ namespace SpaceLander
         {
             _crashViewModel = crash;
             _landingViewModel = win;
-            _crashViewModel.IsLose += ShowTitle;
+            _crashViewModel.OnCrash += ShowTitle;
             _landingViewModel.IsWin += ShowTitle;
         }
 
@@ -29,7 +29,7 @@ namespace SpaceLander
 
         ~TitleView()
         {
-            _crashViewModel.IsLose -= ShowTitle;
+            _crashViewModel.OnCrash -= ShowTitle;
             _landingViewModel.IsWin -= ShowTitle;
         }
     }

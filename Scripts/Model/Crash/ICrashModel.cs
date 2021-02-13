@@ -5,6 +5,10 @@ namespace SpaceLander
     internal interface ICrashModel
     {
         AudioClip CrashSound { get; }
+        string CrashMessage { get; }
+        float LandingCrashSpeed { get; }
+        float CrashAngleMin { get; }
+        float CrashAngleMax { get; }
         float RandomForceMINX { get; }
         float RandomForceMAXX { get; }
         float RandomForceMINY { get; }

@@ -24,6 +24,5 @@ namespace SpaceLander
         {
             _fuelViewModel.OnFuelChange -= OnFuelChange;
         }
-
     }
 }

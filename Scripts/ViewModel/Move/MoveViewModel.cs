@@ -16,6 +16,7 @@ namespace SpaceLander
         private readonly Transform _ship;
         private float _horizontal;
         private float _vertical;
+        private bool _isMoveUp;
 
         public MoveViewModel(IFuelViewModel fuelViewModel, IForceModel forceModel, Transform ship,
             (IUserInputProxy horizontal, IUserInputProxy vertical) input)
@@ -27,23 +28,36 @@ namespace SpaceLander
             _verticalInputProxy = input.vertical;
             _horizontalInputProxy.AxisOnChange += HorizontalOnAxisOnChange;
             _verticalInputProxy.AxisOnChange += VerticalOnAxisOnChange;
+            _isMoveUp = false;
         }
 
+        public AudioClip ThrusterSound => _forceModel.ThrusterSound;
         private void VerticalOnAxisOnChange(float value) => _vertical = value;
 
         private void HorizontalOnAxisOnChange(float value) => _horizontal = value;
 
         public void Execute(float deltaTime)
         {
-            if (_vertical > 0 & _fuelViewModel.HasFuel)
+            CheckVertical(deltaTime);
+            CheckHorizontal(deltaTime);
+        }
+
+        private void CheckVertical(float deltaTime)
+        {
+            if (_vertical > 0 && _fuelViewModel.HasFuel)
             {
                 MoveUp(deltaTime);
             }
             else
             {
+                if (_isMoveUp != true) return;
                 OnStopMove?.Invoke(Vector3.zero);
+                _isMoveUp = false;
             }
+        }
 
+        private void CheckHorizontal(float deltaTime)
+        {
             if (_horizontal > 0 && _fuelViewModel.HasFuel)
             {
                 RotateLeft(deltaTime);
@@ -62,7 +76,11 @@ namespace SpaceLander
         {
             _fuelViewModel.ConsumeFuelToRise(deltaTime);
             var vector = _ship.up * _forceModel.ForceRate;
-            OnMovementChange?.Invoke(vector);
+            if (_isMoveUp == false)
+            {
+                OnMovementChange?.Invoke(vector);
+                _isMoveUp = true;
+            }
         }
 
         private void RotateLeft(float deltaTime)

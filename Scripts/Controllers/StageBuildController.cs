@@ -1,7 +1,7 @@
 ﻿
 namespace SpaceLander
 {
-    internal class StageBuildController : IInitialize, IReboot
+    internal class StageBuildController : IInitialize
     {
         private MoonSurface _moon;
         private PlatformInitialize _platformInitialize;
@@ -10,7 +10,8 @@ namespace SpaceLander
         public StageBuildController(StageData data)
         {
             _moon = new MoonSurface(data);
-            _platformInitialize = new PlatformInitialize(new PlatformFactory(data.PlatformParticles, data.PlatformSize), data, _moon.HeightOfThePlatformLocation);
+            IPlatformModel model = new PlatformModel(data, _moon.HeightOfThePlatformLocation);
+            _platformInitialize = new PlatformInitialize(new PlatformFactory(data.PlatformParticles, model.Size), model);
             _audioMainThemePlayer = new AudioMainThemePlayer(data.MainMelody);
         }
 
@@ -19,11 +20,6 @@ namespace SpaceLander
             _moon.CreateSurface();
             _audioMainThemePlayer.PlayMainThemeClip();
             _platformInitialize.Initialize();
-        }
-
-        public void RebootLevel()
-        {
-             _platformInitialize.RebootPlatform();
         }
     }
 }

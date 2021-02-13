@@ -3,7 +3,6 @@
 namespace SpaceLander
 {
     public interface IFuelViewModel
-
     {
         bool HasFuel { get; }
         event Action<float> OnFuelChange;

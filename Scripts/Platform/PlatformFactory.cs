@@ -12,13 +12,14 @@ namespace SpaceLander
         public PlatformFactory(Transform platform, float size)
         {
             _prefab = platform;
+            _size = size;
         }
 
         public Transform CreatePlatform()
         {
             var platform = Object.Instantiate(_prefab);
             var shapeModule = platform.GetComponentInChildren<ParticleSystem>().shape;
-            shapeModule.radius = 2f;
+            shapeModule.radius = _size;
             platform.name = NameManager.NAME_PLATFORM;
             return platform.transform;
         }

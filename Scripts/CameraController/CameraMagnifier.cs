@@ -23,7 +23,6 @@ namespace SpaceLander
         
         public void ExecuteFocus(float deltaTime)
         {
-            Debug.Log("Camera change focus");
             float size = _camera.orthographicSize;
             float sizeDiff = size - _model.CameraZoomLimit;
             

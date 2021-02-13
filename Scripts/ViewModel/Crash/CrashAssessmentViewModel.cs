@@ -2,19 +2,35 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
 namespace SpaceLander
 {
     internal class CrashAssessmentViewModel : ICrashAssessmentViewModel
     {
-        public event Action<Vector3, Vector3> OnCrash;
-        public event Action IsLose;
+        public event Action OnCrash;
+        public Vector3 CollisionForce { get; private set; }
+        public Vector3 TorqueForce { get; private set; }
         private ICrashModel _model;
-
+        private bool _endGame;
 
         public CrashAssessmentViewModel(ICrashModel model)
         {
             _model = model;
+            CollisionForce = Vector3.zero;
+            TorqueForce = Vector3.zero;
+            _endGame = false;
+        }
+
+        public AudioClip CrashSound => _model.CrashSound;
+        public string CrashMessage => _model.CrashMessage;
+
+        public void AnalysisOfDamage(GameObject gameObject, float speed)
+        {
+            float angle = gameObject.transform.parent.transform.rotation.eulerAngles.z;
+
+            if (angle < _model.CrashAngleMax && angle > _model.CrashAngleMin || speed > _model.LandingCrashSpeed)
+            {
+                Crash();
+            }
         }
 
         public void Crash()
@@ -23,11 +39,14 @@ namespace SpaceLander
             float randomForceY = Random.Range(_model.RandomForceMINY, _model.RandomForceMAXY);
             float randomTorqueForce = Random.Range(_model.RandomTorqueForceMIN, _model.RandomTorqueForceMAX);
 
-            Vector3 collisionForce = new Vector3(randomForceX, randomForceY, 0.0f);
-            Vector3 torqueForce = new Vector3(0.0f, 0.0f, randomTorqueForce);
+            CollisionForce = new Vector3(randomForceX, randomForceY, 0.0f);
+            TorqueForce = new Vector3(0.0f, 0.0f, randomTorqueForce);
 
-            IsLose?.Invoke();
-            OnCrash?.Invoke(collisionForce, torqueForce);
+            if (_endGame == false)
+            {
+                OnCrash?.Invoke();
+                _endGame = true;
+            }
         }
     }
 }

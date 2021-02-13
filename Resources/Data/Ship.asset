@@ -22,10 +22,17 @@ MonoBehaviour:
   _initialFuelSupply: 100
   _fuelRate: -10
   _torqueFuelRate: 10
+  _winMessage: Y O U  W I N !
   _winTimeOnPlatform: 2
-  _randomForceMINX: -0.1
-  _randomForceMAXX: 0.1
+  _landingWinAngleMin: 1
+  _landingWinAngleMax: 359
+  _crashMessage: T R Y  A G A I N ...
+  _landingCrashSpeed: 4
+  _crashAngleMin: 10
+  _crashAngleMax: 350
+  _randomForceMINX: -0.2
+  _randomForceMAXX: 0.2
   _randomForceMINY: 0.1
   _randomForceMAXY: 0.1
-  _randomTorqueForceMIN: -0.1
-  _randomTorqueForceMAX: 0.1
+  _randomTorqueForceMIN: -0.2
+  _randomTorqueForceMAX: 0.2
