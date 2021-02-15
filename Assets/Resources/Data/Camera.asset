@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d362ef91e824d739c0ebe80e0caafb7, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: 
-  CameraDefaultPosition: {fileID: 9052385998379929097, guid: 3e39d740fb0d1b3428faeb20cc056da1,
+  CameraDefaultPosition: {fileID: 264535648113014276, guid: 5cfacfe7274b3d14db5f5869fb6fff51,
     type: 3}
   _cameraDefaultSize: 21
   _cameraMoveSpeed: 10
